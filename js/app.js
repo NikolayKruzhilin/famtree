@@ -50,9 +50,6 @@ function computeLayout() {
     visited.add(id);
     const p = data.people[id];
     if (!p) return 0;
-    // Allow an explicit row override in data (e.g. Андрей Зайцев has no parents
-    // but should appear on the same row as his wife Ольга)
-    if (p._gen !== undefined) { gen[id] = p._gen; return p._gen; }
     let maxParentGen = -1;
     for (const pid of [p.father, p.mother]) {
       if (pid && data.people[pid]) {
@@ -266,10 +263,12 @@ function renderLines() {
         drawLine(svg, parentMidX, junctionY, cx, junctionY, 'line-child');
         drawLine(svg, cx, junctionY, cx, cpos.y, 'line-child');
       } else {
-        // Horizontal branch at junction Y
+        // Horizontal branch at junction Y — span must include parentMidX
+        // so the vertical stem always connects to the bar, even when parents
+        // are offset from their children (e.g. mixed-family layout).
         const xs   = validChildren.map(cid => positions[cid].x + NW / 2);
-        const minX = Math.min(...xs);
-        const maxX = Math.max(...xs);
+        const minX = Math.min(...xs, parentMidX);
+        const maxX = Math.max(...xs, parentMidX);
         drawLine(svg, minX, junctionY, maxX, junctionY, 'line-child');
         validChildren.forEach(cid => {
           const cpos = positions[cid];

@@ -449,24 +449,27 @@ const DEFAULT_DATA = {
 
     // ══════════════════════════════════════════════
     // ПОКОЛЕНИЕ 2 — РОДИТЕЛИ
+    // Порядок в файле = порядок в раскладке слева направо:
+    //   Фёдор → Ольга → Андрей
+    // Так горизонтальная линия Дмитрия идёт только
+    // между Фёдором и Ольгой (его детьми), не касаясь Андрея.
     // ══════════════════════════════════════════════
 
-    "zaycev-andrey": {
-      firstname: "Андрей",
-      patronymic: null,
-      lastname: "Зайцев",
+    "ant-fedor-jr": {
+      firstname: "Фёдор",
+      patronymic: "Дмитриевич",
+      lastname: "Антонов",
       gender: "m",
-      birth: null,
-      death: null,
+      birth: 1969,
+      death: 2012,
       birthplace: null,
       deathplace: null,
       job: null,
-      notes: "Папа. Ветка Зайцевых будет добавлена позже — данных пока нет.",
-      father: null,
-      mother: null,
-      spouse: "zaycev-olga",
-      children: ["vesta", "evgenia", "dmitry-z"],
-      _gen: 2
+      notes: "Брат Ольги. Родился 11 февраля 1969 года. Умер 29 октября 2012 года.",
+      father: "ant-dmitry",
+      mother: "lid-lidia",
+      spouse: null,
+      children: []
     },
 
     "zaycev-olga": {
@@ -486,22 +489,23 @@ const DEFAULT_DATA = {
       children: ["vesta", "evgenia", "dmitry-z"]
     },
 
-    "ant-fedor-jr": {
-      firstname: "Фёдор",
-      patronymic: "Дмитриевич",
-      lastname: "Антонов",
+    "zaycev-andrey": {
+      firstname: "Андрей",
+      patronymic: null,
+      lastname: "Зайцев",
       gender: "m",
-      birth: 1969,
-      death: 2012,
+      birth: null,
+      death: null,
       birthplace: null,
       deathplace: null,
       job: null,
-      notes: "Брат Ольги. Родился 11 февраля 1969 года. Умер 29 октября 2012 года.",
-      father: "ant-dmitry",
-      mother: "lid-lidia",
-      spouse: null,
-      children: []
+      notes: "Папа. Ветка Зайцевых будет добавлена позже — данных пока нет.",
+      father: "zaycev-line-p",
+      mother: null,
+      spouse: "zaycev-olga",
+      children: ["vesta", "evgenia", "dmitry-z"]
     },
+
 
     // ══════════════════════════════════════════════
     // ПОКОЛЕНИЕ 3 — ВЫ (Зайцевы)
@@ -556,6 +560,49 @@ const DEFAULT_DATA = {
       mother: "zaycev-olga",
       spouse: null,
       children: []
+    },
+
+    // ══════════════════════════════════════════════
+    // ВЕТКА ЗАЙЦЕВЫХ — placeholder-предки
+    // Добавлены в конец файла, чтобы оказаться
+    // в крайнем правом конце своих поколений.
+    // Данные будут заполнены позже.
+    // ══════════════════════════════════════════════
+
+    // Поколение 0 (прапрадеды) — правый край
+    "zaycev-line-gp": {
+      firstname: "Зайцевы",
+      patronymic: null,
+      lastname: "(прапрадеды)",
+      gender: "u",
+      birth: null,
+      death: null,
+      birthplace: null,
+      deathplace: null,
+      job: null,
+      notes: "Предки по линии Зайцевых (поколение прапрадедов). Данные не установлены — будут добавлены позже.",
+      father: null,
+      mother: null,
+      spouse: null,
+      children: ["zaycev-line-p"]
+    },
+
+    // Поколение 1 (прадеды) — правый край
+    "zaycev-line-p": {
+      firstname: "Зайцевы",
+      patronymic: null,
+      lastname: "(прадеды)",
+      gender: "u",
+      birth: null,
+      death: null,
+      birthplace: null,
+      deathplace: null,
+      job: null,
+      notes: "Предки по линии Зайцевых (поколение прадедов / дедушки и бабушки Андрея). Данные не установлены — будут добавлены позже.",
+      father: "zaycev-line-gp",
+      mother: null,
+      spouse: null,
+      children: ["zaycev-andrey"]
     }
 
   }
